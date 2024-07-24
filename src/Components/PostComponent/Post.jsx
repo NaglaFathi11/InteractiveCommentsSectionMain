@@ -5,7 +5,7 @@ import Counter from '../CounterComponent/Counter'
 export default function Post(props) {
   return (
     <div id='Post'>
-        <Counter />
+        <Counter FinalScore= {props.Score}/>
         <div id='PostContent'>
 
         <div id='Header'>

@@ -3,9 +3,9 @@ import { useState } from 'react'
 import PlusPhoto from '../../assets/Images/icon-plus.svg'
 import MinusPhoto from '../../assets/Images/icon-minus.svg'
 
-export default function Counter() {
+export default function Counter(props) {
 
-const [count, setCount] = useState(0)
+const [count, setCount] = useState(props.FinalScore)
  function AddNum(){
     let NewAddNum = count + 1
     setCount(NewAddNum)
