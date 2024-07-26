@@ -1,0 +1,149 @@
+.CommentItem {
+    border-radius: 10px;
+    background-color: white;
+    margin: 10px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    align-items: flex-start;
+    box-shadow: 0 0 9px 0;
+    width: 100%;
+    height: 100%;
+    overflow-wrap: anywhere;
+}
+
+.Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 197px;
+}
+
+.Header .Title {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.Header .Title img {
+    width: 45px;
+}
+
+.Header .Title h4 {
+    color: hsl(212, 24%, 26%);
+    /* font-weight: 700; */
+}
+
+.Header .Title p {
+    color: hsl(211, 10%, 45%);
+}
+
+.content p {
+    color: hsl(211, 10%, 45%);
+    line-height: 23px;
+
+
+}
+
+#ReplyInput {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 25px 0;
+    background: white;
+    height: 150px;
+    width: 727px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 9px 0;
+}
+
+
+
+#ReplySection #ReplyInput input {
+    width: 205px;
+    height: 50px;
+}
+
+#ReplySection #ReplyInput button {
+
+    background: hsl(211, 10%, 45%);
+    color: white;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    width: 89px;
+    height: 42px;
+    cursor: pointer;
+}
+
+
+#ReplyItem {
+    background: rgb(255, 255, 255);
+    margin-left: 100px;
+    padding: 20px;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 9px 0;
+}
+
+div#handleCounter {
+    display: flex;
+}
+
+
+#youbtn {
+    background-color: hsl(238, 40%, 52%);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    width: 47px;
+    height: 28px;
+    cursor: pointer;
+}
+
+
+#NaglaUserAvatar {
+    width: 38px;
+}
+
+#ReplyInput textarea {
+    height: 93px;
+    width: 60%;
+    outline: #d9d9d942 1px solid;
+    border: #d9d9d96b 1px solid;
+    box-shadow: 0px 0px 5px 0px #00000030;
+    resize: none;
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    div#CommentItem {
+        width: 100%;
+        position: relative;
+        height: 270px;
+        font-size: 14px;
+    }
+
+    #Header #Title {
+        justify-content: space-evenly;
+    }
+
+}

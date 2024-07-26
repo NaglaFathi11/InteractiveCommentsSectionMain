@@ -1,15 +1,91 @@
+import './App.css';
+import CommentsFeed from './AllComponents/CommentsFeedComponent/CommentsFeed';
+import AddNewComment from './AllComponents/AddNewCommentComponent/AddNewComment';
+import AmyrobsonAvatar from './assets/avatars/image-amyrobson.png';
+import MaxblagunAvatar from './assets/avatars/image-maxblagun.png';
+import RamsesmironAvatar from './assets/avatars/image-ramsesmiron.png'
+import NaglaAvatr from './assets/avatars/nagla.webp';
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-import './App.css'
-import PropsComponent from './Components/PropsComponent/Props'
+export default function App(props) {
+  const [comments, setComments] = useState([
+    // Initial comments
+    {
+      id: 1,
+      userAvatar: AmyrobsonAvatar,
+      userName: "amyrobson",
+      createdAt: "1 month ago",
+      score: 12,
+      content: "Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.",
+      replies: [] 
+    },
+    {
+      id: 2,
+      userAvatar: MaxblagunAvatar,
+      userName: "maxblagun",
+      createdAt: "2 weeks ago",
+      score: 5,
+      content:"Woah, your project looks awesome! How long have you been coding for? I'm still new, but think I want to dive into React as well soon. Perhaps you can give me an insight on where I can learn React? Thanks!",
+      replies: [
+        {
+           "id": 3,
+           "userAvatar": RamsesmironAvatar,
+           "userName": "ramsesmiron",
+           "createdAt": "1 week ago",
+           "score": 4,
+           "content": "If you're still new, I'd recommend focusing on the fundamentals of HTML, CSS, and JS before considering React. It's very tempting to jump ahead but lay a solid foundation first.",
+        }
+      ]
+    }
+  ]);
 
-export default function App() {
+
+  // My comments
+  function CommentAdded(newComment) {
+    const NewCommentObject = {
+      id: uuidv4(),
+      userAvatar: NaglaAvatr,
+      userName: "nagla",
+      createdAt: "Just Now",
+      score: 7,
+      content: newComment,
+      replies: [] 
+    };
+
+    setComments([...comments, NewCommentObject]);
+  }
+
+
+  // Reply function
+  function handleAddReply(replyContent, ReplyCommentId) {
+    // console.log(ReplyCommentId)
+    const updatedCommentsWithReplies = comments.map(comment => {
+      if (comment.id == ReplyCommentId) {
+          return {
+            ...comment,
+            replies: [...comment.replies, { id: uuidv4(), content: replyContent }]
+          };
+        }else  return comment;
+      })
+  
+    setComments(updatedCommentsWithReplies);
+    // console.log(updatedCommentsWithReplies);
+  }
 
   return (
     <div id='MainContainer'>
-       <PropsComponent />
+      <CommentsFeed
+        ListOfComments={comments}
+        setComments={setComments}
+        handleAddReply={handleAddReply}
+         UserAvatar ={NaglaAvatr}
+        
+      />
+      <AddNewComment 
+      AddNewComment={CommentAdded}
+      UserAvatar ={NaglaAvatr}
+      />
     </div>
-  )
-
+  );
 }
-
-

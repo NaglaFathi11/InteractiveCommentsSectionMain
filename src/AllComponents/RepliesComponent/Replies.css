@@ -1,0 +1,33 @@
+.Reply {
+    display: flex;
+    gap: 11px;
+    align-items: center;
+    justify-content: center;
+}
+
+.Reply button {
+    background: transparent;
+    border: none;
+    color: hsl(238, 40%, 52%);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+
+}
+
+#replyImg {
+    width: 18px;
+}
+
+@media screen and (max-width: 600px) {
+
+    .Reply {
+        position: absolute;
+        bottom: 20px;
+        right: 25px;
+    }
+
+    .Reply button {
+        font-size: 16px;
+    }
+}
