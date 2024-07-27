@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import './AddNewComment.css'
 
-
  export default function AddNewComment(props) {
-    // console.log(props)
-    // ================== props.initialValue || ''
+    // ValueInput = input field value = event.target.value
     const [ValueInput, setValueInput] = useState('')
 
     function HandleSendComment(){
@@ -12,8 +10,8 @@ import './AddNewComment.css'
         setValueInput('')
     }
 
-    function HandleChangeComment (event){
-        setValueInput(event.target.value)
+    function HandleChangeComment (event){ // event.target.value = value of input field
+        setValueInput(event.target.value) 
     }
 
   return (
@@ -22,5 +20,4 @@ import './AddNewComment.css'
         <textarea type="text" placeholder='Add a comment...' value={ValueInput} onChange={HandleChangeComment}/>
         <button onClick={HandleSendComment}>SEND</button>
    </div>
-  )
-}
+  )}

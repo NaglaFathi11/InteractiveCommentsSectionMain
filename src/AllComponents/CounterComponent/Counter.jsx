@@ -5,7 +5,7 @@ import MinusPhoto from '../../assets/Images/icon-minus.svg'
 
 export default function Counter(props) {
 
-const [count, setCount] = useState(props.FinalScore)
+const [count, setCount] = useState(props.FinalScore) // props.FinalScore = score of comment object
  function AddNum(){
     let NewAddNum = count + 1
     setCount(NewAddNum)
@@ -21,6 +21,5 @@ const [count, setCount] = useState(props.FinalScore)
         <label>{count}</label>
         <button onClick={MinusNum}><img src={MinusPhoto} alt="Not Found" /></button>
     </div>
-  )
-}
+  )}
 

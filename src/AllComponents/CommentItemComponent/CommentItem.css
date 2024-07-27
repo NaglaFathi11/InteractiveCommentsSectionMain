@@ -43,7 +43,31 @@
 .content p {
     color: hsl(211, 10%, 45%);
     line-height: 23px;
+    overflow-wrap: anywhere;
 
+}
+
+div#ReplySection {
+    width: 100%;
+}
+
+#coverReplyItem {
+    border-left: 2px solid #c3c4ef;
+    margin-left: 38px;
+}
+
+#ReplyItem {
+    background: rgb(255, 255, 255);
+    margin-left: 32px;
+    margin-bottom: 20px;
+    padding: 30px;
+    display: flex;
+    gap: 26px;
+    align-items: flex-start;
+    border-radius: 10px;
+    box-shadow: 0 0 9px 0;
+    width: 95%;
+    height: 190px;
 
 }
 
@@ -52,8 +76,8 @@
     gap: 10px;
     margin: 0 0 25px 0;
     background: white;
-    height: 150px;
-    width: 727px;
+    height: 160px;
+    width: 95%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -61,7 +85,6 @@
     border-radius: 10px;
     box-shadow: 0 0 9px 0;
 }
-
 
 
 #ReplySection #ReplyInput input {
@@ -83,16 +106,6 @@
 }
 
 
-#ReplyItem {
-    background: rgb(255, 255, 255);
-    margin-left: 100px;
-    padding: 20px;
-    display: flex;
-    gap: 26px;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: 0 0 9px 0;
-}
 
 div#handleCounter {
     display: flex;
@@ -123,15 +136,6 @@ div#handleCounter {
     box-shadow: 0px 0px 5px 0px #00000030;
     resize: none;
 }
-
-
-
-
-
-
-
-
-
 
 @media screen and (max-width: 600px) {
 
