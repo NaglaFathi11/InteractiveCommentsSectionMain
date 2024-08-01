@@ -1,4 +1,4 @@
-.CommentItem {
+#commentItem {
     border-radius: 10px;
     background-color: white;
     margin: 10px;
@@ -11,43 +11,47 @@
     width: 100%;
     height: 100%;
     overflow-wrap: anywhere;
+
 }
 
-.Header {
+div#commentItemContent {
+    width: 90%;
+}
+
+#commentHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-    gap: 197px;
+    gap: 95px;
 }
 
-.Header .Title {
+#commentTitle {
     display: flex;
     align-items: center;
     gap: 25px;
 }
 
-.Header .Title img {
+#commentTitle img {
     width: 45px;
 }
 
-.Header .Title h4 {
+#commentTitle h4 {
     color: hsl(212, 24%, 26%);
     /* font-weight: 700; */
 }
 
-.Header .Title p {
+#commentTitle p {
     color: hsl(211, 10%, 45%);
 }
 
-.content p {
+#commentContent p {
     color: hsl(211, 10%, 45%);
     line-height: 23px;
     overflow-wrap: anywhere;
-
 }
 
-div#ReplySection {
+#ReplySection {
     width: 100%;
 }
 
@@ -56,20 +60,7 @@ div#ReplySection {
     margin-left: 38px;
 }
 
-#ReplyItem {
-    background: rgb(255, 255, 255);
-    margin-left: 32px;
-    margin-bottom: 20px;
-    padding: 30px;
-    display: flex;
-    gap: 26px;
-    align-items: flex-start;
-    border-radius: 10px;
-    box-shadow: 0 0 9px 0;
-    width: 95%;
-    height: 190px;
 
-}
 
 #ReplyInput {
     display: flex;
@@ -107,7 +98,7 @@ div#ReplySection {
 
 
 
-div#handleCounter {
+#handleCounter {
     display: flex;
 }
 
@@ -137,17 +128,68 @@ div#handleCounter {
     resize: none;
 }
 
+#commentIcons {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+    justify-content: center;
+}
+
+#commentContent {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#commentContent textarea {
+    height: 93px;
+    width: 80%;
+    outline: #d9d9d942 1px solid;
+    border: #d9d9d96b 1px solid;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px #00000030;
+    resize: none;
+}
+
+#commentContent textarea::placeholder {
+    color: hsl(211, 10%, 45%);
+    font-size: 17px;
+    padding: 10px;
+    font-family: "Rubik", sans-serif;
+
+}
+
+#commentContent button {
+    background-color: hsl(238, 40%, 52%);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    width: 95px;
+    height: 42px;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
 
-    div#CommentItem {
+    #commentItem {
         width: 100%;
         position: relative;
         height: 270px;
         font-size: 14px;
     }
 
-    #Header #Title {
+    #commentTitle {
         justify-content: space-evenly;
     }
+
+    #commentIcons {
+        position: absolute;
+        bottom: 18px;
+        right: 26px;
+        gap: 21px;
+    }
+
 
 }

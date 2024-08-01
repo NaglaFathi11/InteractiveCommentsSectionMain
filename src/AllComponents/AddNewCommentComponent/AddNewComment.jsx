@@ -6,7 +6,7 @@ import './AddNewComment.css'
     const [ValueInput, setValueInput] = useState('')
 
     function HandleSendComment(){
-        props.AddNewComment(ValueInput)
+        props.CommentAdded(ValueInput)
         setValueInput('')
     }
 

@@ -4,8 +4,8 @@ import ReplayIcon from '../../assets/Images/icon-reply.svg';
 export default function RepliesComponent(props) {
 
   return (
-    <div className='Reply'>
+    <div id='Reply'>
       <img src={ReplayIcon} alt="Not Found" id='replyImg'/>
-      <button onClick={props.handleReplyClick}>Reply</button>
+      <button onClick={props.handleShowReplyIcon}>Reply</button>
     </div>
   )}

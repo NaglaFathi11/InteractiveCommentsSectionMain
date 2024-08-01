@@ -4,15 +4,6 @@ import CommentItem from '../CommentItemComponent/CommentItem';
 export default function CommentsFeed(props) {
 
 
-  // Main Comments delete function
-  // event = finalspecialkey = props.specialKey = comment.id
-  //ListOfComments = comments = (array) اسم ال 
-    function DeleteCommentFunction(event) {   
-      const newObjectAfterDelete = props.ListOfComments.filter(comment => comment.id != event);
-      props.setComments(newObjectAfterDelete);
-    }
-
-
   return (
 
     <div id='AllComments'>
@@ -20,17 +11,28 @@ export default function CommentsFeed(props) {
       {props.ListOfComments.map( comment => (
       <CommentItem
           key = {comment.id}
-          specialKey = {comment.id}
+          commentId = {comment.id}
           UserAvatar = {comment.userAvatar}
           UserName = {comment.userName}
           CreatedAt = {comment.createdAt}
           Score = {comment.score}
           Content = {comment.content}
-          deleteComment = {DeleteCommentFunction}
+          DeleteCommentFunction = {props.DeleteCommentFunction}
+          DeleteReplyFunction = {props.DeleteReplyFunction}
           handleAddReply = {props.handleAddReply}
-          Replies = {comment.replies}
+          replies = {comment.replies}
+
+          replyId = {comment.replies.id}
           comment = {comment} 
           NaglaUserAvatar = {props.UserAvatar}
+          CommentAdded={props.CommentAdded}
+          NewContenteAfterEdit = {props.NewContenteAfterEdit}
+          NewReplieseAfterEdit ={props.NewReplieseAfterEdit}
+
+       
+
+
+          
       />
       ))}
       

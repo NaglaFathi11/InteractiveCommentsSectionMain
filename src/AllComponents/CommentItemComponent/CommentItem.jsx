@@ -1,58 +1,92 @@
 import { useState } from 'react';
 import './CommentItem.css';
 import Counter from '../CounterComponent/Counter';
-import DeleteCommentComponent from '../DeleteComponent/Delete';
+import DeleteCommentComponent from '../DeleteCommentComponent/DeleteComment';
 import RepliesComponent from '../RepliesComponent/Replies';
+import ReplyInput from '../ReplyInputComponent/ReplyInput'
+import ReplyItem from '../ReplyItemComponent/ReplyItem';
+import EditCommentComponent from '../EditCommentComponent/EditComment'
+
+
 
 export default function CommentItem(props) {
+
+  
       const [showReplyInput, setShowReplyInput] = useState(false);
-      const [replyContent, setReplyContent] = useState('');
-
-      function handleReplyClick(username) {
-          setReplyContent(`@${username}`);  //Mention to a username in reply input
+          function handleShowReplyIcon() {
           setShowReplyInput(!showReplyInput);
+          // console.log('hhhh')
       }
 
-      function handleSendReply() {
-          props.handleAddReply(replyContent, props.specialKey);
-          setReplyContent('');
-          setShowReplyInput(false);
-      }
-      // event.target.value = value of input field to add a reply to a comment = replyContent
-      function handleReplyChange(event) {
-          setReplyContent(event.target.value);
-      }
 
+
+      const [showInputoEdit, setShowInputoEdit] = useState(false);
+        function handleEditMyComment(){
+           setShowInputoEdit(!showInputoEdit)
+           }
+
+
+           const [newValueAfterEdit, setNewValueAfterEdit] = useState(props.Content)
+           function handeOnChangeEdit (event){
+            setNewValueAfterEdit(event.target.value)
+
+           }
+
+           function handleEditValue(event){
+          // console.log(newValueAfterEdit)
+              // console.log(event.target.getAttribute('commentid'))
+            const clickedcommentId = event.target.getAttribute('commentid')
+              props.NewContenteAfterEdit(newValueAfterEdit , clickedcommentId)
+              setShowInputoEdit(false)
+
+           }
+    //  console.log(props)
   return (
     <>
       {/* Main Comments */}
-      <div className='CommentItem'>
+      <div id='commentItem'>
         <Counter FinalScore={props.Score} />
-        <div id='CommentItemContent'>
-            <div className='Header'>
-              <div className='Title'>
+        <div id='commentItemContent'>
+            <div id='commentHeader'>
+              <div id='commentTitle'>
                 <img src={props.UserAvatar} alt="Not Found" />
                 <h4>{props.UserName}</h4>
                 {props.UserName == "nagla" ? <button id='youbtn'>You</button> : null}
                 <p>{props.CreatedAt}</p>
               </div>
 
-              <DeleteCommentComponent
-                specialKey={props.specialKey}
-                finalDeleteComment={props.deleteComment}
-                finaluserName={props.UserName}
-              />
+               <div id='commentIcons'>
+                  <DeleteCommentComponent
+                    commentId={props.commentId}
+                    DeleteCommentFunction={props.DeleteCommentFunction}
+                    UserName = {props.UserName} //to show for my comment i=only = nagla
+                  />
+
+                {props.UserName == "nagla" && (
+                  <EditCommentComponent handleEditMyComment = {handleEditMyComment} />)}
+                  
+                  {props.UserName != "nagla" && (
+                  <RepliesComponent 
+                  handleShowReplyIcon = {handleShowReplyIcon}   
+                  comment ={props.comment} />
+                  )}
+
+    </div>
+   </div>
+
+            <div id='commentContent'>
+              {showInputoEdit == true ? (
+                <>
+                <textarea value={newValueAfterEdit} onChange={handeOnChangeEdit}></textarea>
+                <button onClick={handleEditValue} commentid = {props.commentId}>Update</button>  </>
               
-              {props.UserName != "nagla" && (
-              <RepliesComponent 
-              handleReplyClick = {() => handleReplyClick(props.UserName)}   
-              comment ={props.comment} />
-              )}
+            )
+              
+              :   (<p>{props.Content}</p>)}
             </div>
 
-            <div className='content'>
-              <p>{props.Content}</p>
-            </div>
+
+
 
         </div>
       </div>
@@ -60,46 +94,48 @@ export default function CommentItem(props) {
 
       {/* Reply Section */}
       <div id='ReplySection'>
-  
+
+
+       {/*Reply input  */}
         {showReplyInput && (
-          <div id='ReplyInput'>
-            <img src={props.NaglaUserAvatar} alt="Not Found" id='NaglaUserAvatar' />
-            <textarea value={replyContent} onChange={handleReplyChange} />
-            <button onClick={handleSendReply}>Send</button>
-          </div>
+          <ReplyInput  
+            NaglaUserAvatar= {props.NaglaUserAvatar}
+            setShowReplyInput ={setShowReplyInput}
+            handleAddReply ={props.handleAddReply}
+            commentId ={props.commentId}
+            UserName = {props.UserName}
+  
+        
+          />
+      
         )}
 
-        <div id='coverReplyItem'>
-          {/* reply = reply object in replies array */}
-          {props.Replies.map( reply => (
-            <div key = {reply.id} id ='ReplyItem'>
-              <Counter FinalScore = {reply.score} />
-              <div id='replayContent'>
-                <div className='Header'>
-                  <div className='Title'>
-                      <img src={reply.userAvatar} alt="Not Found" />
-                      <h4>{reply.userName}</h4>
-                      {reply.userName == "nagla" ? <button id='youbtn'>You</button> : null}
-                      <p>{reply.createdAt}</p>
-                      {reply.userName == "ramsesmiron" && (
-                        <RepliesComponent handleReplyClick={() => handleReplyClick(reply.userName)} />
-                      )}
-                      {/* There is a problem here */}
-                      <DeleteCommentComponent
-                        specialKey={reply.id}
-                        finalDeleteComment={props.deleteComment}
-                        finaluserName={reply.userName}
-                      />
+        
+        {/*  */}
+        
+         {/* ui for reply */}
+            {props.replies.map(reply => (
+        <div id='coverReplyItem' key ={reply.id}>
+          
+          <ReplyItem 
+            replyId = {reply.id}
+            replyUserAvatar ={reply.userAvatar}
+            replyScore = {reply.score}
+            replyUserName ={reply.userName}
+            replyCreatedAt ={reply.createdAt}
+            replyContent = {reply.content}
 
-                  </div>
-                </div>
 
-                <div className='content'>
-                  <p>{reply.content}</p>
-                </div>
+          commentId = {props.commentId}
+          DeleteReplyFunction = {props.DeleteReplyFunction}
+          handleShowReplyIcon = {handleShowReplyIcon}
+          UserName ={props.UserName}
+          NewReplieseAfterEdit ={props.NewReplieseAfterEdit}
+   
+          />
 
-              </div>
-            </div> ))}
-            </div>
+     </div>
+           ))}
+       
       </div>
     </> )}
